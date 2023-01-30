@@ -15,7 +15,7 @@ const Home: NextPage = () => {
         initial={{ filter: "brightness(0.25)" }}
         animate={{ filter: "brightness(1)" }}
         transition={{ duration: 1.8 }}
-        className="flex h-screen w-screen items-center justify-center overflow-hidden bg-slate-900 text-white"
+        className="flex h-screen w-screen items-center justify-center overflow-hidden bg-[#1c032b] text-white"
       >
         <AnimatePresence>
           <motion.div
