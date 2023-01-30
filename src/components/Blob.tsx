@@ -1,7 +1,7 @@
 // eslint-disable-next-line
 // @ts-nocheck
 import { useFrame } from "@react-three/fiber";
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useRef } from "react";
 import type { Mesh } from "three";
 import { MathUtils } from "three";
 import fragmentShader from "./utils/fragmentShader";
@@ -23,7 +23,6 @@ interface MeshProps extends Mesh {
 }
 
 export const Blob = () => {
-  const [isMouseHover, setIsMouseHover] = useState(false);
   const mesh = useRef() as MeshProps;
   const uniforms = useMemo(() => {
     return {
@@ -41,20 +40,14 @@ export const Blob = () => {
 
       mesh.current.material.uniforms.u_intensity.value = MathUtils.lerp(
         mesh.current.material.uniforms.u_intensity.value,
-        isMouseHover ? 1 : 0.15,
+        0.15,
         0.02
       );
     }
   });
 
   return (
-    <mesh
-      ref={mesh}
-      scale={1.5}
-      position={[0, 0, 0]}
-      onPointerOver={() => setIsMouseHover(true)}
-      onPointerLeave={() => setIsMouseHover(false)}
-    >
+    <mesh ref={mesh} scale={1.5} position={[0, 0, 0]}>
       <icosahedronBufferGeometry args={[2, 20]} />
       <shaderMaterial
         vertexShader={vertexShader}
